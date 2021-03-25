@@ -10,7 +10,7 @@ export default function Genre({data, bg}) {
         mt-3
         ${bg ? bg : 'bg-yellow-700'}
       `}>
-      <span>{data.genre}</span>
+      <span>{data}</span>
     </div>
   )
 }

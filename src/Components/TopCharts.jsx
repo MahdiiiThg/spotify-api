@@ -1,6 +1,7 @@
 import React from 'react'
+import SingleTopCharts from './SingleTopCharts';
 
-export default function TopCharts() {
+export default function TopCharts(props) {
   return (
     <div 
       className="
@@ -16,8 +17,10 @@ export default function TopCharts() {
         <h5 className="capitalize">top charts</h5>
         <span>see all</span>
       </div>
-      <div className="flex justify-around flex-wrap">
-        
+      <div className="p-2">
+        { props.data && 
+          props.data.tracks.map((track, index) => <SingleTopCharts data={track} key={index}/>)  
+        }
       </div>
     </div>
   )

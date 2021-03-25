@@ -1,16 +1,16 @@
 import React from 'react'
 import Genre from '../Components/Genre'
 
-export default function Genres() {
+export default function Genres({data}) {
   const bgColor = ['blue','yellow','red','blue','green']
-  const data = [
-    { genre: 'Rock'},
-    { genre: 'pop'},
-    { genre: 'metal'},
-    { genre: 'electro pop'},
-    { genre: 'classical period'},
-    { genre: 'hip hop rap'}
-  ]
+  // const data = [
+  //   { genre: 'Rock'},
+  //   { genre: 'pop'},
+  //   { genre: 'metal'},
+  //   { genre: 'electro pop'},
+  //   { genre: 'classical period'},
+  //   { genre: 'hip hop rap'}
+  // ]
   return (
     <div 
       className="
@@ -27,8 +27,8 @@ export default function Genres() {
         <span>see all</span>
       </div>
       <div className="flex justify-around flex-wrap">
-        {
-          data.map((data,index) => <Genre key={index} data={data} />)
+        { data &&
+          data.genres.slice(0,9).map((data,index) => <Genre key={index} data={data} />)
         }
       </div>
     </div>

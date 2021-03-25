@@ -13,14 +13,21 @@ function Header() {
       </div>
       <div className="flex items-center">
         <a href="">setting</a>
-        <div className="flex items-center">
-          <img
-            className="rounded-md"
-            style={{height:'50px',width:'50px'}}
-            src="/assets/images/ed.jpg"
-            alt="profile image"
-          />
-          <span>John Doe</span>
+        <div 
+          className="
+            flex
+            items-center
+            bg-gray-500
+          ">
+          <div className="bg-gray-100">
+            <img
+              className="rounded-sm"
+              style={{height:'30px',width:'30px'}}
+              src="/assets/images/ed.jpg"
+              alt="profile image"
+            />
+          </div>
+          <span className="p-2">John Doe</span>
         </div>
       </div>
     </div>
