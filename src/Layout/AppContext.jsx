@@ -1,0 +1,8 @@
+import React from "react";
+
+// set the defaults
+const AppContext = React.createContext({
+  token: "BQDDYjK7Jgv0lm2ek7fslovV64DMiWewniFyuScJ_e6L77P0D6J5_Lb47zpGmyA1sBquF8r8CTgQtdu3XJrUN9HJv7uS1ZDYJK332Wg8M9FYm7uf21L6DjoA6kRBjUJ9MtkfUXueW6ResMrmX5MjxzeoGAT5GOsrNm0VWcYKHZ1KKyZEEYAuaw0bGK8qVQ-N7aJqqW3wNePc5gQ_zHks9z6p8e9rE4eT-lxRnYMxCR32yIx9nTeKq-C9c9y7eVrSvgAocbnY4GlkImAozCa8_QskbgPq_h8JsVGlGauU",
+});
+
+export default AppContext;

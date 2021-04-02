@@ -1,26 +1,35 @@
 import React, {useEffect, useState} from 'react'
 import './index.css';
 import './App.css';
+
+// Components
 import Main from './Layout/Main';
 import Header from './Components/Common/Header';
 import Albums from './Containers/Albums';
 import Player from './Components/Common/Player';
 import Genres from './Containers/Genres';
 import TopCharts from './Components/TopCharts';
+
+// axios
 import axios from 'axios';
+import {initApp} from './redux/actions/initApp'
+// redux
+import {connect} from 'react-redux'
 
-
-function App() {
-  const token ='BQDr90YNo4L-XyG5Exwq_NWNTiKhgK8rze_RR1V2xCuyS1RRVT3AEY2DHfi0v0CA7DAEGUC8hATww2hNBE-jy0RIQT_D0Xnhdwhlpf25cQUQQXST9Wtxrr4IQFEUE6RpOq4vxd1Rs0uG10har-gpbV9IYGWABZNzqVQCtqr9lOtqMDFPi8bknTvlMhObQyY5iI_eJ0U0KmI3fIjIq0zSJty7tSQwV0pLNqdNMQaWn0xiGSfLZZN1X5DwpOjd7PSXQzRz57rfkCiuUeivIRZhvGWn_AQ_H6eg5fPYvoVc'
+function App(props) {
   const [tracks, setTracks] = useState(null)
   const [genres,setGenres] = useState(null)
   const [releases, setReleases] = useState(null)
-  useEffect(() => {
+
+  useEffect(async () => {
+    await props.initApp()
+    
     setTimeout(() => {
       latestReleases()
       genreSeeds()
       latestTracks()
-    }, 1000);
+    }, 3000);
+
   },[])
 
   const latestReleases = (search) => {
@@ -30,7 +39,7 @@ function App() {
       headers: { 
         'Accept': 'application/json', 
         'Content-Type': 'application/json', 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${props.token.token}`
       },
       params: {
         country: 'US',
@@ -51,7 +60,7 @@ function App() {
       headers: { 
         'Accept': 'application/json', 
         'Content-Type': 'application/json', 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${props.token.token}`
       },
       params: {
         country: 'US',
@@ -72,7 +81,7 @@ function App() {
       headers: { 
         'Accept': 'application/json', 
         'Content-Type': 'application/json', 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${props.token.token}`
       },
       params: {
         ids: '7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B',
@@ -87,7 +96,7 @@ function App() {
   const setchildData = (event) => {
     console.log('setchildData',event.target.id);
   }
-
+  
   return (
     <Main>
       <Header />
@@ -95,10 +104,14 @@ function App() {
         <Albums setTrackId={setchildData} data={releases}/>
         <Genres data={genres}/>
         <TopCharts data={tracks} />
-        <Player />
+        <Player data={props.token} />
       </div>
     </Main>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  token: state.initalApp
+})
+
+export default connect(mapStateToProps, { initApp })(App);

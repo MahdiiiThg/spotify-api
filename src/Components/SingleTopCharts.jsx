@@ -23,7 +23,7 @@ export default function SingleTopCharts({data}) {
         <div className="pl-4">
           <h5 className="font-bold pb-2">{data.name}</h5>
           {
-            data.artists.map(artist => <span>{artist.name}, </span>)
+            data.artists.map((artist, index) => <span key={index}>{artist.name}, </span>)
           }
           
         </div>

@@ -12,14 +12,18 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 
-export default function Player() {
-  const token ='BQDr90YNo4L-XyG5Exwq_NWNTiKhgK8rze_RR1V2xCuyS1RRVT3AEY2DHfi0v0CA7DAEGUC8hATww2hNBE-jy0RIQT_D0Xnhdwhlpf25cQUQQXST9Wtxrr4IQFEUE6RpOq4vxd1Rs0uG10har-gpbV9IYGWABZNzqVQCtqr9lOtqMDFPi8bknTvlMhObQyY5iI_eJ0U0KmI3fIjIq0zSJty7tSQwV0pLNqdNMQaWn0xiGSfLZZN1X5DwpOjd7PSXQzRz57rfkCiuUeivIRZhvGWn_AQ_H6eg5fPYvoVc'
+export default function Player(props) {
   const [track, setTrack] = useState(null)
+  const [token, setToken] = useState(null)
+
   const id = '2takcwOaAZWiXQijPHIx7B'
-  useEffect(() => {
-    setTimeout(() => {
-      getTrack()
-    }, 1000);
+  
+  useEffect(async () => {
+    await setToken(props.data.token)
+    setTimeout(async () => {
+      getTrack(id)
+    }, 3000);
+
   },[])
 
   const getTrack = (id) => {
@@ -39,7 +43,6 @@ export default function Player() {
     })
   }
 
-  console.log('track track',track);
   return (
     <div
       className="
@@ -77,8 +80,9 @@ export default function Player() {
         <audio controls>
           <source src={track.preview_url} type="audio/mpeg" />
         </audio>
+        
         </>
     }
-    </div>
+  </div>
   )
 }
